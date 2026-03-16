@@ -48,7 +48,7 @@ kmeans_da = KMeans(n_clusters=3, random_state=42, n_init='auto')
 df_clean['cluster_da'] = kmeans_da.fit_predict(scaled_da)
 
 n_before_da = len(df_clean)
-print("Kümeleme-1 (age-rc_min) öncesi:", n_before_da)
+print("Kümeleme-1 (age-rc_min) öncesi veri sayısı (kümelemeye giren veri sayısı):", n_before_da)
 
 # Outlier temizleme (küme merkezine uzaklık)
 centers_da = kmeans_da.cluster_centers_
@@ -69,7 +69,7 @@ kmeans_da = KMeans(n_clusters=3, random_state=42, n_init='auto')
 df_clean['cluster_da'] = kmeans_da.fit_predict(scaled_da)
 
 n_after_da = len(df_clean)
-print(f"Silinen eleman sayısı (age-rc_min): {n_before_da - n_after_da}")
+print(f"Silinen eleman sayısı (age-rc_min outlier temizlemesi sonucu ): {n_before_da - n_after_da}")
 
 # 1. görsel
 plt.figure(figsize=(7, 5))
@@ -88,7 +88,7 @@ plt.show()
 # 1. kümeleme skoru
 sil_da = silhouette_score(scaled_da, df_clean['cluster_da'])
 print(f"\n(age-rc_min) Silhouette Skoru: {sil_da:.4f}")
-print("\n(age-rc_min) Küme Eleman Sayıları:")
+print("\n(age-rc_min) 1.Kümeleme sonucu Küme Eleman Sayıları:")
 print(df_clean['cluster_da'].value_counts().sort_index())
 
 # =======================
@@ -102,7 +102,7 @@ kmeans_de = KMeans(n_clusters=3, random_state=42, n_init='auto')
 df_clean['cluster_de'] = kmeans_de.fit_predict(scaled_de)
 
 n_before_de = len(df_clean)
-print("\nKümeleme-2 (dist-bl) öncesi:", n_before_de)
+print("\nKümeleme-2 (dist-bl) öncesi veri sayısı (kümelemeye giren veri sayısı):", n_before_de)
 
 # Outlier temizleme (küme merkezine uzaklık)
 centers_de = kmeans_de.cluster_centers_
@@ -121,7 +121,7 @@ kmeans_de = KMeans(n_clusters=3, random_state=42, n_init='auto')
 df_clean['cluster_de'] = kmeans_de.fit_predict(scaled_de)
 
 n_after_de = len(df_clean)
-print(f"Silinen eleman sayısı (dist-bl): {n_before_de - n_after_de}")
+print(f"Silinen eleman sayısı (dist-bl outlier temizlemesi sonucu): {n_before_de - n_after_de}")
 
 
 # l-b FİLTRESİ
